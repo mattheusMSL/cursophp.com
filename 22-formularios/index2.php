@@ -15,36 +15,40 @@
  */
 
  if(isset($_POST['enviar-formulario'])){
+
   $erros = array();
 
   $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-  echo $nome . "<br> ";
 
   $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
-  echo $idade . "<br> ";
+    if(!filter_var($idade, FILTER_VALIDATE_INT)):
+     $erros[] = "Idade precisa ser um valor inteiro!";
+    endif;
 
   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-  echo $email . "<br> ";
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
+      $erros[] = "email inválido!";
+    endif;
 
   $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
-  echo $email . "<br> ";
+   if(filter_var($url, FILTER_VALIDATE_URL)){
+     $erros[] = "url inválida!";
+   }
 
-  if(!Empty($erros)){
+  if(!empty($erros)){
     foreach($erros as $erro):
       echo "<li> $erro </li>";
     endforeach;
   }else{
     echo "Seus dados estão corretos!";
   }
-
  }
 ?>
  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
   Nome: <input type="text" name="nome" placeholder="Escreva seu nome"> <br>
-  Idade: <input type="number" name="idade" placeholder="Escreva sua idade"> <br>
-  Email: <input type="email" name="idade" placeholder="Escreva seu email"> <br>
-  Peso: <input type="text" name="peso" id=""> <br>
-  URL: <input type="text" name="url" id=""> <br>
+  Idade: <input type="text" name="idade" placeholder="Escreva sua idade"> <br>
+  Email: <input type="email" name="email" placeholder="Escreva seu email"> <br>
+  URL: <input type="text" name="url" > <br>
   <button type="submit" name="enviar-formulario"> Enviar </button>
  </form>
 </body>
