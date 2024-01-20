@@ -31,7 +31,7 @@
     endif;
 
   $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
-   if(filter_var($url, FILTER_VALIDATE_URL)){
+   if(!filter_var($url, FILTER_VALIDATE_URL)){
      $erros[] = "url inválida!";
    }
 
@@ -45,10 +45,10 @@
  }
 ?>
  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-  Nome: <input type="text" name="nome" placeholder="Escreva seu nome"> <br>
-  Idade: <input type="text" name="idade" placeholder="Escreva sua idade"> <br>
-  Email: <input type="email" name="email" placeholder="Escreva seu email"> <br>
-  URL: <input type="text" name="url" > <br>
+  Nome: <input type="text" name="nome" placeholder="Digite seu nome"> <br>
+  Idade: <input type="text" name="idade" placeholder="Digite sua idade"> <br>
+  Email: <input type="email" name="email" placeholder="Digite seu email"> <br>
+  URL: <input type="text" name="url" placeholder="Digite uma URL..."> <br>
   <button type="submit" name="enviar-formulario"> Enviar </button>
  </form>
 </body>
