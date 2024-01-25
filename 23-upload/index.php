@@ -1,6 +1,7 @@
 <html>
   <body>
     <?php
+    
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -28,6 +29,7 @@
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
       <input type="file" name="arquivo"> <br>
       <input type="submit" name="enviar-form">
+      <img src="./arquivos/65ac550321b0e.png" alt="imagens">
     </form>
   </body>
 </html>
